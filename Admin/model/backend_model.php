@@ -63,6 +63,15 @@
 		}
 
 		/**
+		 *  Search User
+		 */
+
+		function searchUser($key){
+			$sql = "SELECT * FROM user WHERE username = '$key' OR email = '$key'";
+			return mysqli_query($this->connect(), $sql);
+		}
+
+		/**
 		 * Delete User
 		*/
 
@@ -84,9 +93,9 @@
 		 * Edit User
 		*/
 
-		function EditUser($id, $name, $email, $username){
+		function EditUser($id, $name, $email, $username, $avatar){
 			$updated = date('Y-m-d h:i:s');
-			$sql = "UPDATE user SET name = '$name', email = '$email', username = '$username', updated = '$updated' WHERE id = '$id' ";
+			$sql = "UPDATE user SET name = '$name', email = '$email', username = '$username', avatar = '$avatar', updated = '$updated' WHERE id = '$id' ";
 			return mysqli_query($this->connect(), $sql);
 		}
 	}

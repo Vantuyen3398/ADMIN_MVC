@@ -22,13 +22,11 @@
                   <label for="exampleInputUsername">Username</label>
                   <input type="text" class="form-control" placeholder="Enter username" name="username" value="<?php echo $usernameEdit;?>">
                 </div>
+                <img style="width: 100px; height: 100px;" src="uploads/user/<?php echo $avatarEdit?>">
                 <div class="form-group">
-                  <label for="exampleInputUsername">
-                    <img style="width: 100px; height: 100px" src="uploads/user/<?php echo $avatarEdit?>">
-                  </label>
-                  <!-- <input type="file" class="form-control" placeholder="Enter username" name="avatar"> -->
+                  <label for="exampleInputFile">Avatar</label>
+                  <input type="file" id="exampleInputFile" name="avatar">
                 </div>
-              </div>
               <!-- /.box-body -->
 
               <div class="box-footer">

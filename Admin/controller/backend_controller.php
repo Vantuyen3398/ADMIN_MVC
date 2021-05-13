@@ -75,7 +75,10 @@
 						$page = $_GET['page'];
 						$get_user = $user -> pagination($page);
 					}
-					
+					if(isset($_GET['keyword'])){
+						$key = $_GET['keyword'];
+						$search_user = $user->searchUser($key);
+					}
 					if(isset($_GET['id'])){
 						$id = $_GET['id'];
 						$del_user = $user -> delUser($id);
@@ -103,20 +106,20 @@
 						$email = $_POST['email'];
 						$username = $_POST['username'];
 					// Lay anh cu de luu
-						// $avatarName = $avatarEdit;
-						// //upload avatar
-						// if(!$_FILES['avatar']['error']){
-						// 	$avatar = $_FILES['avatar'];
-						// 	$path = 'uploads/user/';
-						// 	$avatarName = uniqid().$avatar['name'];
-						// 	move_uploaded_file($avatar['tmp_name'], $path.$avatarName);
-						// 	//delete old image
-						// 	unlink('uploads/user/'.$avatarEdit);
-						// }
+						$avatarName = $avatarEdit;
+						//upload avatar
+						if($_FILES['avatar']['error']){
+							$avatar = $_FILES['avatar'];
+							$path = 'uploads/user/';
+							$avatarName = uniqid().$avatar['name'];
+							move_uploaded_file($avatar['tmp_name'], $path.$avatarName);
+							//delete old image
+							unlink('uploads/user/'.$avatarEdit);
+						}
 
 						//end upload avatar
 						$user = new userModel();
-						$user -> EditUser($id, $name, $email, $username);
+						$user -> EditUser($id, $name, $email, $username, $avatarName);
 						header("Location: admin.php?action=list_user&page=1");
 					}
 					include 'view/backend/edit_user.php';
@@ -230,7 +233,7 @@
 						$name      = $_POST['name'];
 						$price     = $_POST['price'];
 						$category_id     = $_POST['product_category_id'];
-						// Truoc mat, lay anh cu de luu
+						// Lay anh cu de luu
 						$imageName = $imageEdit;
 						//upload image
 						if(!$_FILES['image']['error']){

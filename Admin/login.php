@@ -43,6 +43,9 @@
         <input type="password" class="form-control" placeholder="Password" name="password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
+      <div class="form-group has-feedback">
+        <span>Nếu bạn chưa có tài khoản hãy click <a href="register.php">vào đây</a></span>
+      </div>
       <div class="row">
         <!-- /.col -->
         <div class="col-xs-4">

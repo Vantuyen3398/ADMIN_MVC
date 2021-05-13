@@ -58,9 +58,10 @@
             </li>
             <li>
                 <?php  
-                  if($_SESSION['login']){
-                    $ad = "admin";
-                    if($ad == $_SESSION['role']){
+                  // if($_SESSION['login']){
+                  //   $ad = "admin";
+                  //   if($ad == $_SESSION['role']){
+                  if(isset($_GET['id'])){
                 ?>
                   <a href="admin.php?action=edit_user">
                     <i class="fa fa-circle-o"></i> 
@@ -68,15 +69,9 @@
                   </a>
                 <?php
                     }
-                  }
+                  // }
                 ?>
               
-            </li>
-            <li>
-              <a href="admin.php?controller=user&action=chagne">
-                <i class="fa fa-circle-o"></i>
-                 Chagne Password
-              </a>
             </li>
           </ul>
         </li>
@@ -112,9 +107,10 @@
             </li>
             <li>
               <?php  
-                  if($_SESSION['login']){
-                    $ad = "admin";
-                    if($ad == $_SESSION['role']){
+                  // if($_SESSION['login']){
+                  //   $ad = "admin";
+                  //   if($ad == $_SESSION['role']){
+                if(isset($_GET['id'])){
               ?>
               <a href="admin.php?action=list_product&page=1">
                 <i class="fa fa-circle-o"></i> 
@@ -122,7 +118,7 @@
               </a>
               <?php
                   }
-                }
+                // }
               ?>
             </li>
           </ul>

@@ -21,10 +21,10 @@
                 ?>
                   <tr>
                     <td style="text-align: center"><?php echo $id?></td>
-                    <td style="text-align: center"><?php echo $row['name']?></td>
+                    <td style="text-align: center"><?php echo $row['cate_name']?></td>
                     <th style="width: 40px;text-align: center; line-height: 70px">
                         <a href="admin.php?action=list_cate&id=<?php echo $id;?>">
-                          <button type="button" class="btn btn-block btn-danger">DELETE</button>
+                          <button type="button" onclick="return confirm('Are you want to delete?')" class="btn btn-block btn-danger">DELETE</button>
                         </a>
                       </th>
                   </tr>

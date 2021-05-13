@@ -1,8 +1,8 @@
-<!-- <form action="admin.php?controller=user&action=list_user&keyword=<?php $item[2]?>" method="get"> -->
+<form action="admin.php?action=list_user&keyword=<?php ?>" method="get">
       <!-- <input type="hidden" name="c" value="user"> -->
-      <!-- <input type="text" name="keyword" placeholder="Tìm Kiếm..." value="<?php echo (isset($_GET['keyword'])) ? $_GET['keyword'] : '' ?>"> -->
-      <!-- <input type="submit" value="Search"> -->
-<!-- </form> -->
+      <input type="text" name="keyword" placeholder="Tìm Kiếm..." value="<?php echo (isset($_GET['keyword'])) ? $_GET['keyword'] : '' ?>">
+      <input type="submit" value="Search">
+</form>
 <div class="row">
         <div class="col-md-6">
           <div class="box">
@@ -26,7 +26,30 @@
                   <th style="width: 40px; text-align: center">Action</th>
                 </tr>
                 <?php  
-                    if($get_user){
+                  if(isset($search_user)){
+                    while($row = $search_user -> fetch_assoc()){
+                ?>
+                  <tr>
+                      <td style="text-align: center; line-height: 70px"><?php echo $row['id'] ?></td>
+                      <td style="text-align: center; line-height: 70px"><?php echo $row['name'] ?></td>
+                      <td style="text-align: center; line-height: 70px"><?php echo $row['email'] ?></td>
+                      <td style="text-align: center; line-height: 70px"><?php echo $row['username'] ?></td>
+                      <td style="text-align: center;"><img src="uploads/user/<?php echo $row['avatar']?>" width = "100px" height = "80px" alt="" /></td>
+                      <th style="width: 40px;text-align: center; line-height: 70px">
+                        <a href="admin.php?action=edit_user&id=<?php echo $id;?>">
+                          <button type="button" class="btn btn-block btn-info">EDIT</button>
+                        </a> 
+                        <a onclick="return confirm('Are you want to delete?')" href="admin.php?action=list_user&id=<?php echo $id;?>">
+                          <button type="button" class="btn btn-block btn-danger">DELETE</button>
+                        </a>
+                      </th>
+                    </tr>
+                <?php
+                    }
+                  }
+                ?>
+                <?php  
+                    if(isset($get_user)){
                       while($row = $get_user -> fetch_assoc()){
                         $id = $row['id'];
                       
