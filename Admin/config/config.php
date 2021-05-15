@@ -1,6 +1,6 @@
 <?php 
 	class ConnectDB {
-		function connect(){
+		function connectDatabase(){
 			$server = 'localhost'; //$server = '127.0.0.1';
 			$username = 'root';
 			$password = ''; //$password = '';

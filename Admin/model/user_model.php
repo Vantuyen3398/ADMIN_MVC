@@ -9,13 +9,21 @@
 		public $conn;
 		function __construct() {
 			$connect = new ConnectDB();
-			$this->conn = $connect->connect();
+			$this->conn = $connect->connectDatabase();
 		}
+
 		/**
 		 * Insert Users
-		 */
+		 * @param string $name
+		 * @param string $email
+		 * @param string $username
+		 * @param string $password
+		 * @param string $role
+		 * @param string $birthday
+		 * @param string $avatar
+		*/
 
-		function insert_user($name, $email, $username, $password, $role, $birthday, $avatar){
+		function addUser($name, $email, $username, $password, $role, $birthday, $avatar){
 			$created = date('Y-m-d h:i:s');
 			$sql = "INSERT INTO user(name, email, username, password, role, birthday, avatar, created) VALUES ('$name', '$email', '$username', '$password', '$role', '$birthday', '$avatar', '$created')";
 			return mysqli_query($this->conn, $sql);
@@ -23,9 +31,11 @@
 
 		/**
 		 * Check email_username
-		 */
+		 * @param string $email
+		 * @param string $username
+		*/
 
-		function check_exist_user($email, $username){
+		function checkExistUser($email, $username){
 			$sql = "SELECT * FROM user 
 					WHERE email = '$email' 
 					OR username = '$username' ";
@@ -34,7 +44,10 @@
 
 		/**
 		 * Check Login
-		 */
+		 * @param string $username
+		 * @param string $passsword
+		 * @return string $role
+		*/
 
 		function checkLogin($username, $password) {
 			$sql = "SELECT * FROM user 
@@ -50,7 +63,7 @@
 
 		/**
 		 * List All User
-		 */
+		*/
 
 		function getAllUser(){
 			$sql = "SELECT * FROM user";
@@ -59,17 +72,19 @@
 
 		/**
 		 * List User On Page
-		 */
+		 * @param int $page
+		*/
 
-		function pagination($page){
+		function getPagination($page){
 			$index = ($page - 1) * 3;
 			$sql = "SELECT * FROM user LIMIT ". $index . ',' . 3;
 			return mysqli_query($this->conn, $sql);
 		}
 
 		/**
-		 *  Search User
-		 */
+		 * Search User
+		 * @param string $key
+		*/
 
 		function searchUser($key){
 			$sql = "SELECT * FROM user WHERE username = '$key' OR email = '$key'";
@@ -78,6 +93,7 @@
 
 		/**
 		 * Delete User
+		 * @param int $id
 		*/
 
 		function delUser($id){
@@ -87,15 +103,21 @@
 
 		/**
 		 * Get User By Id
+		 * @param int $id
 		*/
 
-		function getUserbyId($id){
+		function getUserById($id){
 			$sql  = "SELECT * FROM user WHERE id = '$id'";
 			return mysqli_query($this->conn, $sql);
 		}
 
 		/**
 		 * Edit User
+		 * @param int $id
+		 * @param string $name
+		 * @param string $email
+		 * @param string username
+		 * @param string avatar
 		*/
 
 		function EditUser($id, $name, $email, $username, $avatar){

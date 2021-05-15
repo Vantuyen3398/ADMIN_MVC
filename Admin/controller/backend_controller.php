@@ -8,11 +8,17 @@
 
 	class BackendController
 	{
+		/**
+		 * perform request from view
+		 *
+		*/
 		function handleRequest() {
 			$action = isset($_GET['action'])?$_GET['action']:'home';
 			switch ($action) {
 				case 'add_user':
+					// check submit to add user
 					if(isset($_POST['add_user'])){
+						// get submit infor
 						$name = trim($_POST['name']);
 						$email = trim($_POST['email']);
 						$username = trim($_POST['username']);
@@ -20,33 +26,38 @@
 						$role = $_POST['role'];
 						$birthday = date('Y-m-d', strtotime($_POST['birthday']));
 						$avatar = 'default.png';
-						$pathUpload = 'uploads/user/';
+						$path = 'uploads/user/';
+						//upload avatar
 						if ($_FILES['avatar']['error'] == 0) {
-								move_uploaded_file($_FILES['avatar']['tmp_name'], $pathUpload.$_FILES['avatar']['name']);
+								move_uploaded_file($_FILES['avatar']['tmp_name'], $path.$_FILES['avatar']['name']);
 								$avatar = $_FILES['avatar']['name'];
 						}
 							$user = new UserModel();
-							$check_exist_user = $user -> check_exist_user($email, $username);
+							// check exist email and username ?
+							$check_exist_user = $user -> checkExistUser($email, $username);
 							if($check_exist_user ->num_rows == 0){
-								if($user -> insert_user($name, $email, $username, $password, $role, $birthday, $avatar))
+								//add user
+								if($user -> addUser($name, $email, $username, $password, $role, $birthday, $avatar))
 								{
 									$alert = "Add User Success Fully!";
 								}
-							}
-							else{
+							} else {
 								$alert = "Email or Username already exist!";
-							}
+								}
 					}
 					include 'view/backend/add_user.php';
 					break;
 				case 'login':
-					//view du lieu
+					//check submit to login
 					if (isset($_POST['login'])) {
+						//get submit infor
 						$username = trim($_POST['username']);
 						$password = trim(md5($_POST['password']));
 						$user = new UserModel();
+						//check exist username and password ?
 						$checkLogin = $user -> checkLogin($username, $password);
 						if($checkLogin != false) {
+							//initialized $_SESSION['login']
 							$_SESSION['login'] = $username;
 							$_SESSION['role']  = $checkLogin;
 								header("Location: admin.php");
@@ -58,7 +69,6 @@
 				case 'logout':
 					unset($_SESSION['login']);
 					header("Location: login.php");
-					//view du lieu
 					break;
 				case 'list_user':
 					$user = new UserModel();
@@ -66,10 +76,9 @@
 
 					if(!isset($_GET['page'])){
 						$page = 1;
-					}
-					else{
+					} else {
 						$page = $_GET['page'];
-						$get_user = $user -> pagination($page);
+						$get_user = $user -> getPagination($page);
 					}
 					if(isset($_GET['keyword'])){
 						$key = $_GET['keyword'];
@@ -127,8 +136,7 @@
 						$cate_name = $_POST['name'];
 						if(empty($cate_name)){
 							$alert = "Category Name must not be empty.";
-						}
-						else{
+						} else{
 
 							$pd = new ProductModel();
 							$checkCate = $pd -> checkCate($cate_name);
@@ -137,10 +145,9 @@
 								{
 									$alert = "Add Category SuccessFully!";
 								}
-							}
-							else{
+							} else{
 								$alert = "Category Name already exist!";
-							}
+								}
 						}
 					}
 					include "view/backend/add_cate.php";
@@ -162,7 +169,6 @@
 						$product_name = $_POST['name'];
 						$cate_id = $_POST['cate_id'];
 						$price = $_POST['price'];
-						// $list($product_name, $price, $cate_id) =$pd -> getProductData($_POST);
 						$image = 'default.png';
 						$pathUpload = 'uploads/product/';
 						if ($_FILES['image']['error'] == 0) {
@@ -171,14 +177,13 @@
 								$pathUpload.$_FILES['image']['name']);
 							$image = $_FILES['image']['name'];
 						}
-						if($add_product = $pd->insert_pd($product_name, $cate_id, $price, $image))
+						if($add_product = $pd->addProduct($product_name, $price, $cate_id, $image))
 						{
 							$alert = "Add Product SuccessFully!";
-						}
-						else{
+						} else{
 							
 							$alert = "Field must be no empty!";
-						}
+							}
 					}
 
 					include 'view/backend/add_product.php';
@@ -189,10 +194,9 @@
 
 					if(!isset($_GET['page'])){
 						$page = 1;
-					}
-					else{
+					} else{
 						$page = $_GET['page'];
-						$list_product = $pd -> pagination($page);
+						$list_product = $pd -> getPagination($page);
 					}
 
 					//del product id

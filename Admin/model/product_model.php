@@ -8,11 +8,13 @@
 		public $conn;
 		function __construct() {
 			$connect = new ConnectDB();
-			$this->conn = $connect->connect();
+			$this->conn = $connect->connectDatabase();
 		}
+
 		/**
 		 * Add Category Class
-		 */
+		 * @param string $name
+		*/
 
 		function addCate($name){
 			$sql = "INSERT INTO category(cate_name) VALUES ('$name')";
@@ -21,7 +23,8 @@
 
 		/**
 		 * Check Exist Category Class
-		 */
+		 * @param string $name
+		*/
 
 		function checkCate($name) {
 			$sql = "SELECT * FROM category 
@@ -31,7 +34,7 @@
 
 		/**
 		 * Get List Category Class
-		 */
+		*/
 
 		function getListCate(){
 			$sql = "SELECT * FROM category";
@@ -40,7 +43,8 @@
 
 		/**
 		 * Delete Category Class
-		 */
+		 * @param int $id
+		*/
 
 		function delCate($id){
 			$sql = "DELETE FROM category WHERE id = '$id'";
@@ -49,12 +53,23 @@
 
 		/**
 		 * Add Product Class
-		 */
+		 * @param string $product_name
+		 * @param float $price
+		 * @param int $cate_id
+		 * @param string $image
+		*/
 
-		function insert_pd($product_name, $cate_id, $price, $image){
+		function addProduct($product_name, $price, $cate_id, $image){
 			$sql = "INSERT INTO product(product_name, cate_id, price, image) VALUES ('$product_name', '$cate_id', '$price', '$image')";
 			return mysqli_query($this->conn, $sql);
 		}
+
+		// function getProductData($product_name, $price, $cate_id){
+		// 	$product_name = isset($_POST['name'])?$_POST['name']:" ";
+		// 	$price = isset($_POST['price'])?$_POST['price']:"";
+		// 	$cate_id = isset($_POST['cate_id'])?$_POST['cate_id']:"";
+		// 	return array($product_name, $price, $cate_id);
+		// }
 
 		/**
 		 * Get All Product Class
@@ -67,9 +82,10 @@
 
 		/**
 		 * Get List Product To Page
+		 * @param int $page
 		*/
 
-		function pagination($page){
+		function getPagination($page){
 			$index = ($page - 1) * 3;
 			$sql = "SELECT product.*, category.cate_name FROM product INNER JOIN category ON category.id = product.cate_id LIMIT ". $index . ',' . 3;
 			return mysqli_query($this->conn, $sql);
@@ -77,6 +93,7 @@
 
 		/**
 		 * Delete Product 
+		 * @param int $id
 		*/
 
 		function delProduct($id){
@@ -86,6 +103,7 @@
 
 		/**
 		 * Get Product By Id
+		 * @param int $id
 		*/
 
 		function getProductById($id){
@@ -95,6 +113,7 @@
 
 		/**
 		 * Get Category By Id
+		 * @param int $cate_id = null
 		*/
 
 		function getCateById($cate_id = null) {
@@ -110,16 +129,18 @@
 			return $select;
 		}
 
+		/**
+		 * Get Edit Product By Id
+		 * @param int $id
+		 * @param string $name
+		 * @param float $price
+		 * @param string $image
+		 * @param int $category_id
+		*/
+
 		function EditProduct($id, $name, $price, $image, $category_id){
 			$sql = "UPDATE product SET product_name = '$name', cate_id = $category_id, price = '$price', image = '$image' WHERE id = $id";
 			return mysqli_query($this->conn, $sql);
 		}
-
-		// function getProductData($_POST){
-		// 	$product_name = isset($_POST['name'])?$_POST['name']:" ";
-		// 	$price = isset($_POST['price'])?$_POST['price']:"";
-		// 	$cate_id = isset($_POST['cate_id'])?$_POST['cate_id']:"";
-		// 	return array($product_name, $price, $cate_id);
-		// }
 	}
 ?>
