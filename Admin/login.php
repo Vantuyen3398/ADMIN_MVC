@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="css/AdminLTE.min.css">
-
+  <link rel="stylesheet" href="css/mystyle.css">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -33,8 +33,7 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
-    <form action="admin.php?action=login" method="post" name="login" onsubmit="return validateForm()">
+    <form action="admin.php?action=login" method="post" name="login" id="login">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Username" name="username">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -42,9 +41,6 @@
       <div class="form-group has-feedback">
         <input type="password" class="form-control" placeholder="Password" name="password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <span>Nếu bạn chưa có tài khoản hãy click <a href="register.php">vào đây</a></span>
       </div>
       <div class="row">
         <!-- /.col -->
@@ -62,17 +58,9 @@
 <!-- /.login-box -->
 
 <!-- jQuery 3 -->
-<script>
-  function validateForm() {
-  var a = document.forms["login"]["username"].value;
-  var b = document.forms["login"]["password"].value;
-  if (a == "" || b == "") {
-    alert("Field must not be empty");
-    return false;
-  }
-}
-</script>
 <script src="js/jquery.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/validation.js" type="text/javascript"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="js/bootstrap.min.js"></script>
 </body>

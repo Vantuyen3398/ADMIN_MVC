@@ -1,5 +1,7 @@
 <?php  
-	include 'model/backend_model.php';
+	include 'config/config.php';
+	include 'model/user_model.php';
+	include 'model/product_model.php';
 	/**
 	 * BackendController Class
 	 */
@@ -23,11 +25,6 @@
 								move_uploaded_file($_FILES['avatar']['tmp_name'], $pathUpload.$_FILES['avatar']['name']);
 								$avatar = $_FILES['avatar']['name'];
 						}
-						if($name=="" || $email=="" || $username=="" || $password=="" ){
-							$alert = "Field must be not empty";
-						}
-						else
-						{
 							$user = new UserModel();
 							$check_exist_user = $user -> check_exist_user($email, $username);
 							if($check_exist_user ->num_rows == 0){
@@ -39,7 +36,6 @@
 							else{
 								$alert = "Email or Username already exist!";
 							}
-						}
 					}
 					include 'view/backend/add_user.php';
 					break;
@@ -166,6 +162,7 @@
 						$product_name = $_POST['name'];
 						$cate_id = $_POST['cate_id'];
 						$price = $_POST['price'];
+						// $list($product_name, $price, $cate_id) =$pd -> getProductData($_POST);
 						$image = 'default.png';
 						$pathUpload = 'uploads/product/';
 						if ($_FILES['image']['error'] == 0) {
@@ -174,9 +171,8 @@
 								$pathUpload.$_FILES['image']['name']);
 							$image = $_FILES['image']['name'];
 						}
-						if(!empty($product_name && $price && $image))
+						if($add_product = $pd->insert_pd($product_name, $cate_id, $price, $image))
 						{
-							$add_product = $pd->insert_pd($product_name, $cate_id, $price, $image);
 							$alert = "Add Product SuccessFully!";
 						}
 						else{
@@ -219,11 +215,11 @@
 						$nameEdit            = $row['product_name'];
 						$priceEdit           = $row['price'];
 						$imageEdit           = $row['image'];
-						$category_id = $row['cate_id'];
+						$cate_id = $row['cate_id'];
 					}
 					// Lay danh muc san pham ra
 					$pd = new ProductModel();
-					$get_cate_id = $pd -> getCateById($category_id);
+					$get_cate_id = $pd -> getCateById($cate_id);
 					// ket thuc viec lay thong tin theo ID
 
 
@@ -232,7 +228,8 @@
 						// Lay duoc thong tin submit len!
 						$name      = $_POST['name'];
 						$price     = $_POST['price'];
-						$category_id     = $_POST['product_category_id'];
+						$cate_id     = $_POST['cate_id'];
+
 						// Lay anh cu de luu
 						$imageName = $imageEdit;
 						//upload image
@@ -246,7 +243,7 @@
 						}
 						//end upload image
 						$pd = new ProductModel();
-						$pd->EditProduct($id, $name, $price, $imageName, $category_id);
+						$pd->EditProduct($id, $name, $price, $imageName, $cate_id);
 						header("Location: admin.php?action=list_product&page=1");
 					}
 					include 'view/backend/edit_product.php';

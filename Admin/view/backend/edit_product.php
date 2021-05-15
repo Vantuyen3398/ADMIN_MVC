@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group">
                   <label>Category</label>
-                  <select class="form-control" name="product_category_id">
+                  <select class="form-control" name="cate_id">
                     <?php echo $get_cate_id ?>
                   </select>
                 </div>

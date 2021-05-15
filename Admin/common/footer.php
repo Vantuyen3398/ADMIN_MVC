@@ -13,8 +13,9 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
-<script src="js/validateform.js"></script>
 <script src="js/jquery.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/validation.js" type="text/javascript"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="js/bootstrap.min.js"></script>
 <!-- FastClick -->

@@ -13,22 +13,22 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="admin.php?action=add_user" method="post" name="register" onsubmit="return validateForm()" enctype="multipart/form-data">
+            <form role="form" action="admin.php?action=add_user" method="post" name="register" id="registration" enctype="multipart/form-data">
               <div class="box-body">
                 <div class="form-group">
-                  <label for="exampleInputName">Name</label>
+                  <label for="exampleInputName">Name&ensp;<i class="fas fa-star-of-life"></i></label>
                   <input type="text" class="form-control" placeholder="Enter name" name="name">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputEmail">Email</label>
+                  <label for="exampleInputEmail">Email&ensp;<i class="fas fa-star-of-life"></i></label>
                   <input type="email" class="form-control" placeholder="example@domain.com" name="email">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputUsername">Username</label>
+                  <label for="exampleInputUsername">Username&ensp;<i class="fas fa-star-of-life"></i></label>
                   <input type="text" class="form-control" placeholder="Enter username" name="username">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword">Password</label>
+                  <label for="exampleInputPassword">Password&ensp;<i class="fas fa-star-of-life"></i></label>
                   <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password" name="password">
                 </div>
                 <div class="form-group">

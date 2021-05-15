@@ -13,10 +13,10 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="admin.php?action=add_product" method="post" name="register" onsubmit="return validateForm()" enctype="multipart/form-data">
+            <form role="form" action="admin.php?action=add_product" method="post" id="product" enctype="multipart/form-data">
               <div class="box-body">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Product Name</label>
+                  <label for="exampleInputEmail1">Product Name&ensp;<i class="fas fa-star-of-life"></i></label>
                   <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Product Name" name="name">
                 </div>
                 <div class="form-group">
@@ -36,11 +36,11 @@
 					</select>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Price</label>
+                  <label for="exampleInputPassword1">Price&ensp;<i class="fas fa-star-of-life"></i></label>
                   <input type="text" class="form-control" id="exampleInputPrice1" placeholder="Price" name="price">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputFile">Image</label>
+                  <label for="exampleInputFile">Image&ensp;<i class="fas fa-star-of-life"></i></label>
                   <input type="file" id="exampleInputFile" name="image">
                 </div>
               </div>
