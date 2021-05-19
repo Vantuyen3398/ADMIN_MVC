@@ -16,7 +16,7 @@
                 </tr>
                 <?php  
                   if($get_all_cate){
-                    while($row = $get_all_cate -> fetch_assoc()){
+                    while($row = $get_all_cate -> fetch_assoc()) {
                         $id = $row['id'];
                 ?>
                   <tr>

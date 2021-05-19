@@ -6,7 +6,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Add product</h3>
               <?php  
-                if(isset($_POST['name'])){
+                if(isset($_POST['name'])) {
                   echo "<p>$alert</p>";
                 }
               ?>

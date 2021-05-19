@@ -9,7 +9,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">List user</h3>
               <?php  
-                if(isset($id)){
+                if(isset($id)) {
                   echo "<p>$alert</p>";
                 }
               ?>
@@ -26,8 +26,8 @@
                   <th style="width: 40px; text-align: center">Action</th>
                 </tr>
                 <?php  
-                  if(isset($search_user)){
-                    while($row = $search_user -> fetch_assoc()){
+                  if(isset($search_user)) {
+                    while($row = $search_user -> fetch_assoc()) {
                 ?>
                   <tr>
                       <td style="text-align: center; line-height: 70px"><?php echo $row['id'] ?></td>
