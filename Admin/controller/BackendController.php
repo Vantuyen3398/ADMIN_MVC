@@ -32,6 +32,9 @@
 								move_uploaded_file($_FILES['avatar']['tmp_name'], $path.$_FILES['avatar']['name']);
 								$avatar = $_FILES['avatar']['name'];
 						}
+						if($name=="" || $email=="" || $username=="" || $password=="" || $birthday=="" ){
+							$alert = "<span class='success'>Fields must be not empty</span>";
+						} else {
 							$user = new UserModel();
 							// check exist email and username ?
 							$check_exist_user = $user -> checkExistUser($email, $username);
@@ -44,6 +47,7 @@
 							} else {
 								$alert = "Email or Username already exist!";
 								}
+						}
 					}
 					include 'view/backend/add_user.php';
 					break;
@@ -164,7 +168,7 @@
 				case 'add_product':
 					$pd = new ProductModel();
 					$get_all_cate = $pd -> getListCate();
-					if(isset($_POST['add_product'])) {
+					if (isset($_POST['add_product'])) {
 						$product_name = $_POST['name'];
 						$cate_id = $_POST['cate_id'];
 						$price = $_POST['price'];
@@ -176,20 +180,23 @@
 								$pathUpload.$_FILES['image']['name']);
 							$image = $_FILES['image']['name'];
 						}
-						if($add_product = $pd->addProduct($product_name, $price, $cate_id, $image)) {
-							$alert = "Add Product SuccessFully!";
+						if ($product_name=="" || $cate_id=="" || $price=="") {
+							$alert = "<span class='success'>Fields must be not empty</span>";
 						} else {
-							$alert = "Field must be no empty!";
+							if ($add_product = $pd->addProduct($product_name, $price, $cate_id, $image)) {
+								$alert = "Add Product SuccessFully!";
+							} else {
+								$alert = "Field must be no empty!";
+							}
 						}
 					}
-
 					include 'view/backend/add_product.php';
 					break;
 				case 'list_product':
 					$pd = new ProductModel();
 					$get_all_product = $pd -> getAllProduct();
 
-					if(!isset($_GET['page'])) {
+					if (!isset($_GET['page'])) {
 						$page = 1;
 					} else {
 						$page = $_GET['page'];
@@ -197,7 +204,7 @@
 					}
 
 					//del product id
-					if(isset($_GET['id'])) {
+					if (isset($_GET['id'])) {
 						$id = $_GET['id'];
 						$del_product = $pd -> delProduct($id);
 					}
