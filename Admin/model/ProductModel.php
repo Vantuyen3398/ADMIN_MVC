@@ -32,7 +32,7 @@
 		{
 			$sql = "SELECT * FROM category 
 					WHERE cate_name = '$name' ";
-			return mysqli_query($this->connect(), $sql);
+			return mysqli_query($this->conn, $sql);
 		}
 
 		/**

@@ -2,8 +2,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.0
     </div>
-    <strong>Copyright &copy; 2018</strong> All rights
-    reserved.
+    <strong>Copyright &copy; 2021</strong> Trần Văn Tuyến.
   </footer>
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->

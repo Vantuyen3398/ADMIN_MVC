@@ -4,11 +4,11 @@
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Edit user</h3>
+              <!-- <h3 class="box-title">Edit user</h3> -->
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="admin.php?action=edit_user&id=<?php echo $id?>" method="post">
+            <form role="form" id="registration" action="admin.php?action=Edit User&id=<?php echo $id?>" method="post">
               <div class="box-body">
                 <div class="form-group">
                   <label for="exampleInputName">Name</label>
@@ -29,9 +29,12 @@
                 </div>
               <!-- /.box-body -->
 
-              <div class="box-footer">
+              <center><div class="box-footer">
                 <button type="submit" class="btn btn-primary" name="edit_user">EDIT USER</button>
-              </div>
+                <a onclick="return confirm('Are you want to return List user?')" href="admin.php?action=List User&page=1">
+                  <button type="button" class="btn btn-primary">LIST USER</button>
+                </a>
+              </div></center>
             </form>
           </div>
           <!-- /.box -->

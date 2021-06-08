@@ -4,7 +4,7 @@
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Add product</h3>
+              <!-- <h3 class="box-title">Add product</h3> -->
               <?php  
                 if (isset($product_name) && isset($price) && isset($image)) {
                     echo "<p>$alert</p>";
@@ -13,7 +13,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="admin.php?action=add_product" method="post" id="product" enctype="multipart/form-data">
+            <form role="form" action="admin.php?action=Add Product" method="post" id="product" enctype="multipart/form-data">
               <div class="box-body">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Product Name&ensp;<i class="fas fa-star-of-life"></i></label>

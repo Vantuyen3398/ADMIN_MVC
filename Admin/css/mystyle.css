@@ -6,3 +6,9 @@ label.error{
     color: red;
     font-size: 0.8rem;
 }
+.btn {
+	margin-top: 10px;
+}
+.btn.btn-button {
+	margin-top: 20px;
+}

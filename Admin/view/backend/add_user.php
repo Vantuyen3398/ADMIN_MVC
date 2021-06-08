@@ -4,7 +4,7 @@
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Add user</h3>
+              <!-- <h3 class="box-title">Add user</h3> -->
               <?php  
                 if(isset($_POST['add_user'])) {
                     echo "<p>$alert</p>";
@@ -13,7 +13,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="admin.php?action=add_user" method="post" name="register" id="registration" enctype="multipart/form-data">
+            <form role="form" action="admin.php?action=Add User" method="post" name="register" id="registration" enctype="multipart/form-data">
               <div class="box-body">
                 <div class="form-group">
                   <label for="exampleInputName">Name&ensp;<i class="fas fa-star-of-life"></i></label>

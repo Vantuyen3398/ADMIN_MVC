@@ -15,7 +15,7 @@
 		function handleRequest() {
 			$action = isset($_GET['action'])?$_GET['action']:'home';
 			switch ($action) {
-				case 'add_user':
+				case 'Add User':
 					// check submit to add user
 					if(isset($_POST['add_user'])){
 						// get submit infor
@@ -33,7 +33,7 @@
 								$avatar = $_FILES['avatar']['name'];
 						}
 						if($name=="" || $email=="" || $username=="" || $password=="" || $birthday=="" ){
-							$alert = "<span class='success'>Fields must be not empty</span>";
+							$alert = "Fields must be not empty.";
 						} else {
 							$user = new UserModel();
 							// check exist email and username ?
@@ -74,7 +74,7 @@
 					unset($_SESSION['login']);
 					header("Location: login.php");
 					break;
-				case 'list_user':
+				case 'List User':
 					$user = new UserModel();
 					$get_all_user = $user -> getAllUser();
 
@@ -91,12 +91,12 @@
 					if(isset($_GET['id'])) {
 						$id = $_GET['id'];
 						$del_user = $user -> delUser($id);
-						header("Location:admin.php?action=list_user&page=$page");
+						header("Location:admin.php?action=List User&page=$page");
 						$alert = "User Deleted SuccessFully";
 					}
 					include 'view/backend/list_user.php';
 					break;
-				case 'edit_user':
+				case 'Edit User':
 				// Lay duoc ID cua user can EDIT
 					$id = $_GET['id'];
 					$user = new UserModel();
@@ -125,17 +125,20 @@
 							//delete old image
 							unlink('uploads/user/'.$avatarEdit);
 						}
-
-						//end upload avatar
-						$user = new userModel();
-						$user -> EditUser($id, $name, $email, $username, $avatarName);
-						header("Location: admin.php?action=list_user&page=1");
+						if (empty($name) || empty($email) || empty($username)) {
+							header("Location: admin.php?action=Edit User&id=$id");
+						} else {
+							//end upload avatar
+							$user = new userModel();
+							$user -> EditUser($id, $name, $email, $username, $avatarName);
+							header("Location: admin.php?action=List User&page=1");
+						}
 					}
 					include 'view/backend/edit_user.php';
 					break;
 
 				//Case: action = Product!
-				case 'add_cate':
+				case 'Add Category':
 					if(isset($_POST['add_cate'])) {
 						$cate_name = $_POST['name'];
 						if(empty($cate_name)){
@@ -155,17 +158,17 @@
 					}
 					include "view/backend/add_cate.php";
 					break;
-				case 'list_cate':
+				case 'List Category':
 					$pd = new ProductModel();
 					$get_all_cate = $pd -> getListCate();
 					if(isset($_GET['id'])) {
 						$id = $_GET['id'];
 						$delCate = $pd -> delCate($id);
-						header("Location:admin.php?action=list_cate");
+						header("Location:admin.php?action=List Category");
 					}
 					include "view/backend/list_cate.php";
 					break;
-				case 'add_product':
+				case 'Add Product':
 					$pd = new ProductModel();
 					$get_all_cate = $pd -> getListCate();
 					if (isset($_POST['add_product'])) {
@@ -181,7 +184,7 @@
 							$image = $_FILES['image']['name'];
 						}
 						if ($product_name=="" || $cate_id=="" || $price=="") {
-							$alert = "<span class='success'>Fields must be not empty</span>";
+							$alert = "Fields must be not empty.";
 						} else {
 							if ($add_product = $pd->addProduct($product_name, $price, $cate_id, $image)) {
 								$alert = "Add Product SuccessFully!";
@@ -192,7 +195,7 @@
 					}
 					include 'view/backend/add_product.php';
 					break;
-				case 'list_product':
+				case 'List Product':
 					$pd = new ProductModel();
 					$get_all_product = $pd -> getAllProduct();
 
@@ -207,10 +210,11 @@
 					if (isset($_GET['id'])) {
 						$id = $_GET['id'];
 						$del_product = $pd -> delProduct($id);
+						header("Location:admin.php?action=List Product&page=$page");
 					}
 					include "view/backend/list_product.php";
 					break;
-				case 'edit_product':
+				case 'Edit Product':
 					
 
 					// Lay duoc ID cua san pham can EDIT
@@ -232,7 +236,7 @@
 
 
 					// Kiem tra da submit de EDIT san pham chua?
-					if(isset($_POST['edit_product'])) {
+					if (isset($_POST['edit_product'])) {
 						// Lay duoc thong tin submit len!
 						$name      = $_POST['name'];
 						$price     = $_POST['price'];
@@ -249,15 +253,19 @@
 							//delete old image
 							unlink('uploads/product/'.$imageEdit);
 						}
-						//end upload image
-						$pd = new ProductModel();
-						$pd->EditProduct($id, $name, $price, $imageName, $cate_id);
-						header("Location: admin.php?action=list_product&page=1");
+						if (empty($name) || empty($price)) {
+							header("Location: admin.php?action=Edit Product&id=$id");
+						} else {
+							//end upload image
+							$pd = new ProductModel();
+							$pd->EditProduct($id, $name, $price, $imageName, $cate_id);
+							header("Location: admin.php?action=List Product&page=1");
+						}
 					}
 					include 'view/backend/edit_product.php';
 					break;
 				default:
-					if(!isset($_SESSION['login'])) {
+					if (!isset($_SESSION['login'])) {
 						header("Location: login.php");
 					}
 					break;

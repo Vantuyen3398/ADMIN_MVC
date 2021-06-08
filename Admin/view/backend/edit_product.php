@@ -9,11 +9,11 @@
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Edit product</h3>
+              <!-- <h3 class="box-title">Edit product</h3> -->
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="admin.php?action=edit_product&id=<?php echo $id?>" method="post" enctype="multipart/form-data">
+            <form role="form" action="admin.php?action=Edit Product&id=<?php echo $id?>" method="post" enctype="multipart/form-data">
               <div class="box-body">
                 <div class="form-group">
                   <label for="exampleInputName">Name</label>
@@ -37,9 +37,12 @@
               </div>
               <!-- /.box-body -->
 
-              <div class="box-footer">
+              <center><div class="box-footer">
                 <button type="submit" class="btn btn-primary" name="edit_product">EDIT PRODUCT</button>
-              </div>
+                <a onclick="return confirm('Are you want to return List product ?')" href="admin.php?action=List Product&page=1">
+                  <button type="button" class="btn btn-primary">LIST PRODUCT</button>
+                </a>
+              </div></center>
             </form>
           </div>
           <!-- /.box -->

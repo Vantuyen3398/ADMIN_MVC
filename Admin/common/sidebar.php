@@ -12,16 +12,6 @@
         </div>
       </div>
       <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                  <i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
@@ -35,7 +25,7 @@
           </a>
           <ul class="treeview-menu">
             <li>
-              <a href="admin.php?controller=user&action=add_user">
+              <a href="admin.php?action=Add User">
                 <i class="fa fa-circle-o"></i> 
                 Add user
               </a>
@@ -46,7 +36,7 @@
                     $ad = "admin";
                     if($ad == $_SESSION['role']){
                 ?>
-                  <a href="admin.php?action=list_user&page=1">
+                  <a href="admin.php?action=List User&page=1">
                     <i class="fa fa-circle-o"></i> 
                       List users
                   </a>
@@ -63,7 +53,7 @@
                   //   if($ad == $_SESSION['role']){
                   if(isset($_GET['id'])){
                 ?>
-                  <a href="admin.php?action=edit_user">
+                  <a href="admin.php?action=Edit User">
                     <i class="fa fa-circle-o"></i> 
                       Edit users
                   </a>
@@ -85,7 +75,7 @@
           </a>
           <ul class="treeview-menu">
             <li>
-              <a href="admin.php?action=add_product">
+              <a href="admin.php?action=Add Product">
                 <i class="fa fa-circle-o"></i> 
                 Add product
               </a>
@@ -96,7 +86,7 @@
                     $ad = "admin";
                     if($ad == $_SESSION['role']){
               ?>
-              <a href="admin.php?action=list_product&page=1">
+              <a href="admin.php?action=List Product&page=1">
                 <i class="fa fa-circle-o"></i> 
                 List products
               </a>
@@ -112,7 +102,7 @@
                   //   if($ad == $_SESSION['role']){
                 if(isset($_GET['id'])){
               ?>
-              <a href="admin.php?action=list_product&page=1">
+              <a href="admin.php?action=Edit Product">
                 <i class="fa fa-circle-o"></i> 
                 Edit products
               </a>
@@ -138,13 +128,13 @@
           </a>
           <ul class="treeview-menu">
             <li>
-              <a href="admin.php?action=add_cate">
+              <a href="admin.php?action=Add Category">
                 <i class="fa fa-circle-o"></i> 
                 Add category
               </a>
             </li>
             <li>
-              <a href="admin.php?action=list_cate">
+              <a href="admin.php?action=List Category">
                 <i class="fa fa-circle-o"></i> 
                 List category
               </a>

@@ -102,3 +102,38 @@ $().ready(function() {
 		}
 	});
 });
+
+//validate update product
+$().ready(function() {
+	$("#updateproduct").validate({
+		onfocusout: false,
+		onkeyup: false,
+		onclick: false,
+		rules: {
+			"name": {
+				required: true
+			},
+			"price": {
+				required: true,
+				number: true,
+				maxlength: 255
+			},
+			"image": {
+				required: true
+			}
+		},
+		messages: {
+			"name": {
+				required: "Required name !"
+			},
+			"price": {
+				required: "Required price !",
+				number: "Price not valid",
+				maxlength: "Please enter at least 255 characters !"
+			},
+			"image": {
+				required: "Required image !"
+			}
+		}
+	});
+});

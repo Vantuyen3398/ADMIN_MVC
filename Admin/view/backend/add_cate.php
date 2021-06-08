@@ -4,7 +4,7 @@
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Add product</h3>
+              <!-- <h3 class="box-title">Add product</h3> -->
               <?php  
                 if(isset($_POST['name'])) {
                   echo "<p>$alert</p>";
@@ -13,7 +13,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="admin.php?action=add_cate" method="post" name="category" onsubmit="return validateCate()">
+            <form role="form" action="admin.php?action=Add Category" method="post" name="category" onsubmit="return validateCate()">
               <div class="box-body">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Category Name</label>
