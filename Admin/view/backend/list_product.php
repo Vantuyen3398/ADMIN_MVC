@@ -14,19 +14,21 @@
               <table class="table table-bordered" >
                 <tr>
                   <th style="width: 80px ;text-align: center">ID</th>
-                  <th style="width: 150px;text-align: center">Name</th>
-                  <th style="width: 200px;text-align: center">Category</th>
+                  <th style="width: 250px;text-align: center">Name</th>
+                  <th style="width: 100px;text-align: center">Category</th>
                   <th style="width: 150px;text-align: center">Price</th>
                   <th style="text-align: center; width: 155px">Image</th>
                   <th style="width: 100px;text-align: center">Action</th>
                 </tr>
                 <?php  
                   if(isset($list_product)){
+                    $i = 0;
                     while ($row = $list_product -> fetch_assoc()) {
                       $id = $row['id'];
+                      $i++
                 ?>
                   <tr>
-                    <td style="text-align: center; line-height: 105px"><?php echo $id?></td>
+                    <td style="text-align: center; line-height: 105px"><?php echo $i?></td>
                     <td style="text-align: center; line-height: 105px"><?php echo $row['product_name']?></td>
                     <td style="text-align: center; line-height: 105px"><?php echo $row['cate_name']?></td>
                     <td style="text-align: center; line-height: 105px"><?php echo $row['price']?></td>

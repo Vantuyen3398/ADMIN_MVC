@@ -18,11 +18,11 @@
             <div class="box-body">
               <table class="table table-bordered">
                 <tr>
-                  <th style="text-align: center; width: 80px">ID</th>
+                  <th style="text-align: center; width: 90px">ID</th>
                   <th style="text-align: center; width: 115px">Name</th>
-                  <th style="text-align: center; width: 205px">Email</th>
-                  <th style="text-align: center; width: 150px">Username</th>
-                  <th style="text-align: center; width: 155px">Avatar</th>
+                  <th style="text-align: center; width: 220px">Email</th>
+                  <th style="text-align: center; width: 140px">Username</th>
+                  <th style="text-align: center; width: 105px">Avatar</th>
                   <th style="text-align: center; width: 100px">Action</th>
                 </tr>
                 <?php  
@@ -50,12 +50,14 @@
                 ?>
                 <?php  
                     if(isset($get_user)){
+                      $i = 0;
                       while($row = $get_user -> fetch_assoc()){
                         $id = $row['id'];
+                        $i++;
                       
                   ?>
                     <tr>
-                      <td style="text-align: center; line-height: 97px"><?php echo $row['id'] ?></td>
+                      <td style="text-align: center; line-height: 97px"><?php echo $i ?></td>
                       <td style="text-align: center; line-height: 97px"><?php echo $row['name'] ?></td>
                       <td style="text-align: center; line-height: 97px"><?php echo $row['email'] ?></td>
                       <td style="text-align: center; line-height: 97px"><?php echo $row['username'] ?></td>
